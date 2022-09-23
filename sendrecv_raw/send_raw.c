@@ -13,8 +13,8 @@
 
 char this_mac[6];
 char bcast_mac[6] =	{0xff, 0xff, 0xff, 0xff, 0xff, 0xff};
-char dst_mac[6] =	{0x00, 0x00, 0x00, 0x22, 0x22, 0x22};
-char src_mac[6] =	{0x00, 0x00, 0x00, 0x33, 0x33, 0x33};
+char dst_mac[6] =	{0x00, 0x00, 0x00, 0xaa, 0x00, 0x01};
+char src_mac[6] =	{0x00, 0x00, 0x00, 0xaa, 0x00, 0x00};
 
 int main(int argc, char *argv[])
 {
@@ -74,8 +74,11 @@ int main(int argc, char *argv[])
 	raw->ip.id = htons(0x00);
 	raw->ip.off = htons(0x00);
 	raw->ip.ttl = 50;
-	raw->ip.proto = 0xff;
+	raw->ip.proto = 0xFD;
 	raw->ip.sum = htons(0x0000);
+	uint8_t destination[4] =  {10,32,143,255};
+	memcpy(raw->ip.dst, destination,4);
+	//raw->ethernet.eth_type = 25;
 
 	/* fill source and destination addresses */
 
