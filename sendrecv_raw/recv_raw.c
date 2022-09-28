@@ -141,20 +141,23 @@ int main(int argc, char *argv[]){
        printf("2. Send Talk\n");
        printf("Number: ");
        scanf("%d", &input);
- 
-       // if(input == 1){
-       //  show_table(table, &size);
-       // }
-       // else if(input == 2){
-       //  int dest_id;
-       //  printf("Destination id: ");
-       //  scanf("%d", &dest_id);
- 
-       //  char *msg;
-       //  printf("Message: ");
-       //  gets(msg);
-       //  //send_talk()
-       // }
+
+       switch(input) {
+        case 1:
+            show_table(table, &size);
+        break;
+        case 2:
+            int dest_id;
+            printf("Destination id: ");
+            scanf("%d", &dest_id);
+           char *msg;
+            printf("Message: ");
+            gets(msg);
+            send_package(2,*msg);
+        break;
+       }
+       //HEARTBEAT
+       send_package(1,"");
    }
    return 0;
 }
